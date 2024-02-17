@@ -1,0 +1,264 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/vanenshi/Work/James/MovieHero/src/Infrastructure/Infrastructure.csproj": {}
+  },
+  "projects": {
+    "/Users/vanenshi/Work/James/MovieHero/src/Application/Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/vanenshi/Work/James/MovieHero/src/Application/Application.csproj",
+        "projectName": "Application",
+        "projectPath": "/Users/vanenshi/Work/James/MovieHero/src/Application/Application.csproj",
+        "packagesPath": "/Users/vanenshi/.nuget/packages/",
+        "outputPath": "/Users/vanenshi/Work/James/MovieHero/src/Application/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/vanenshi/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "/Users/vanenshi/Work/James/MovieHero/src/Domain/Domain.csproj": {
+                "projectPath": "/Users/vanenshi/Work/James/MovieHero/src/Domain/Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.27, )"
+            },
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.415/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/vanenshi/Work/James/MovieHero/src/Domain/Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/vanenshi/Work/James/MovieHero/src/Domain/Domain.csproj",
+        "projectName": "Domain",
+        "projectPath": "/Users/vanenshi/Work/James/MovieHero/src/Domain/Domain.csproj",
+        "packagesPath": "/Users/vanenshi/.nuget/packages/",
+        "outputPath": "/Users/vanenshi/Work/James/MovieHero/src/Domain/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/vanenshi/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.415/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/vanenshi/Work/James/MovieHero/src/Infrastructure.Persistence/Infrastructure.Persistence.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/vanenshi/Work/James/MovieHero/src/Infrastructure.Persistence/Infrastructure.Persistence.csproj",
+        "projectName": "Infrastructure.Persistence",
+        "projectPath": "/Users/vanenshi/Work/James/MovieHero/src/Infrastructure.Persistence/Infrastructure.Persistence.csproj",
+        "packagesPath": "/Users/vanenshi/.nuget/packages/",
+        "outputPath": "/Users/vanenshi/Work/James/MovieHero/src/Infrastructure.Persistence/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/vanenshi/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "/Users/vanenshi/Work/James/MovieHero/src/Application/Application.csproj": {
+                "projectPath": "/Users/vanenshi/Work/James/MovieHero/src/Application/Application.csproj"
+              },
+              "/Users/vanenshi/Work/James/MovieHero/src/Domain/Domain.csproj": {
+                "projectPath": "/Users/vanenshi/Work/James/MovieHero/src/Domain/Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.27, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[6.0.27, )"
+            },
+            "Pluralize.NET": {
+              "target": "Package",
+              "version": "[1.0.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.415/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/vanenshi/Work/James/MovieHero/src/Infrastructure/Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/vanenshi/Work/James/MovieHero/src/Infrastructure/Infrastructure.csproj",
+        "projectName": "Infrastructure",
+        "projectPath": "/Users/vanenshi/Work/James/MovieHero/src/Infrastructure/Infrastructure.csproj",
+        "packagesPath": "/Users/vanenshi/.nuget/packages/",
+        "outputPath": "/Users/vanenshi/Work/James/MovieHero/src/Infrastructure/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/vanenshi/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "/Users/vanenshi/Work/James/MovieHero/src/Application/Application.csproj": {
+                "projectPath": "/Users/vanenshi/Work/James/MovieHero/src/Application/Application.csproj"
+              },
+              "/Users/vanenshi/Work/James/MovieHero/src/Infrastructure.Persistence/Infrastructure.Persistence.csproj": {
+                "projectPath": "/Users/vanenshi/Work/James/MovieHero/src/Infrastructure.Persistence/Infrastructure.Persistence.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.415/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
