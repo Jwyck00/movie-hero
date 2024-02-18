@@ -4,5 +4,6 @@ namespace Application.Services.Movies;
 
 public interface IMovieService
 {
-    public MoviesResponse GetMovie(Guid id);
+    public Task<MoviesResponse> GetMovie(Guid id);
+    public Task<MoviesResponse> CreateMovie(MoviesRequest moviesRequest);
 }
