@@ -1,8 +1,8 @@
 using Application;
 using Infrastructure;
+using Presentation.Api.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
-var configuration = builder.Configuration;
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -23,6 +23,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseMiddleware<ErrorHandlingMiddleware>();
 app.UseAuthorization();
 app.MapControllers();
 

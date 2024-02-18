@@ -1,5 +1,6 @@
 using Application.Common.Interfaces.Persistence;
 using Application.Dto.Movies;
+using Application.Exceptions;
 using Domain.Entities;
 
 namespace Application.Services.Movies;
@@ -17,7 +18,7 @@ public class MovieService : IMovieService
     {
         var movie = await _movieRepository.GetAsync(m => m.Id == id);
         if (movie is null)
-            throw new Exception("Movie Not Found!");
+            throw new NotFoundException("Movie", id);
 
         return new MoviesResponse(Id: id, Name: movie.Name);
     }
