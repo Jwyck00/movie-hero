@@ -8,7 +8,7 @@ public interface IRepository<TEntity> where TEntity : class, IEntity
 {
     IQueryable<TEntity> Query { get; }
     IQueryable<TEntity> NoTrackingQuery { get; }
-    
+
     // Add -----------------------------------------
 
     Task AddAsync(
@@ -24,7 +24,11 @@ public interface IRepository<TEntity> where TEntity : class, IEntity
 
     // Delete -----------------------------------------
 
-    Task DeleteAsync(TEntity entity, CancellationToken cancellationToken = default, bool saveNow = true);
+    Task DeleteAsync(
+        TEntity entity,
+        CancellationToken cancellationToken = default,
+        bool saveNow = true
+    );
     Task DeleteRangeAsync(
         IEnumerable<TEntity> entities,
         CancellationToken cancellationToken = default,
@@ -36,26 +40,33 @@ public interface IRepository<TEntity> where TEntity : class, IEntity
     Task<TEntity?> GetAsync(
         Expression<Func<TEntity, bool>> predicate,
         CancellationToken cancellationToken = default,
-        IInclude<TEntity>? include = null
+        IInclude<TEntity>? include = null,
+        bool noTracking = false
     );
     Task<TResult?> GetAsync<TResult>(
         Expression<Func<TEntity, bool>> predicate,
         Expression<Func<TEntity, TResult>> selector,
         CancellationToken cancellationToken = default,
-        IInclude<TEntity>? include = null
+        IInclude<TEntity>? include = null,
+        bool noTracking = false
     );
 
     // Get Query -----------------------------------------
 
-    IQueryable<TEntity> GetQuery(IInclude<TEntity>? include = null);
+    IQueryable<TEntity> GetQuery(IInclude<TEntity>? include = null, bool noTracking = false);
     IQueryable<TResult> GetQuery<TResult>(
         Expression<Func<TEntity, TResult>> selector,
-        IInclude<TEntity>? include = null
+        IInclude<TEntity>? include = null,
+        bool noTracking = false
     );
 
     // Update -----------------------------------------
 
-    Task UpdateAsync(TEntity entity, CancellationToken cancellationToken = default, bool saveNow = true);
+    Task UpdateAsync(
+        TEntity entity,
+        CancellationToken cancellationToken = default,
+        bool saveNow = true
+    );
     Task UpdateRangeAsync(
         IEnumerable<TEntity> entities,
         CancellationToken cancellationToken = default,

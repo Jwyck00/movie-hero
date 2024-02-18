@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence.Repositories.Common;
 
-public class Repository<TEntity> : IRepository<TEntity> where TEntity : class, IEntity
+public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity : class, IEntity
 {
     private readonly ApplicationDbContext _dbContext;
 
@@ -20,17 +20,24 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : class, I
     public virtual IQueryable<TEntity> NoTrackingQuery => Entities.AsNoTracking();
 
     #region Get Query
-    public IQueryable<TEntity> GetQuery(IInclude<TEntity>? include = null)
+    public IQueryable<TEntity> GetQuery(IInclude<TEntity>? include = null, bool noTracking = false)
     {
-        return GetQuery(selector: x => x, include: include);
+        return GetQuery(selector: x => x, include: include, noTracking: noTracking);
     }
 
     public IQueryable<TResult> GetQuery<TResult>(
         Expression<Func<TEntity, TResult>> selector,
-        IInclude<TEntity>? include = null
+        IInclude<TEntity>? include = null,
+        bool noTracking = false
     )
     {
         var query = Entities.AsQueryable();
+
+        if (noTracking)
+        {
+            query = Entities.AsNoTracking();
+        }
+
         if (include != null)
             query = include.Execute(query);
         return query.Select(selector);
@@ -93,14 +100,16 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : class, I
     public Task<TEntity?> GetAsync(
         Expression<Func<TEntity, bool>> predicate,
         CancellationToken cancellationToken = default,
-        IInclude<TEntity>? include = null
+        IInclude<TEntity>? include = null,
+        bool noTracking = false
     )
     {
         return GetAsync(
             predicate: predicate,
             selector: x => x,
             cancellationToken: cancellationToken,
-            include: include
+            include: include,
+            noTracking: noTracking
         );
     }
 
@@ -108,10 +117,11 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : class, I
         Expression<Func<TEntity, bool>> predicate,
         Expression<Func<TEntity, TResult>> selector,
         CancellationToken cancellationToken = default,
-        IInclude<TEntity>? include = null
+        IInclude<TEntity>? include = null,
+        bool noTracking = false
     )
     {
-        var query = GetQuery(include);
+        var query = GetQuery(include: include, noTracking: noTracking);
         query = query.Where(predicate);
         return query.Select(selector).FirstOrDefaultAsync(cancellationToken);
     }

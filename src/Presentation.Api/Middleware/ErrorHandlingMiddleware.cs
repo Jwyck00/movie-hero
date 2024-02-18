@@ -39,7 +39,7 @@ public class ErrorHandlingMiddleware
         {
             Status = (int)exception.StatusCode,
             Title = exception.GetType().Name,
-            Detail = exception.Message,
+            Detail = exception.Message
         };
 
         if (_includeErrorDetail)

@@ -16,7 +16,8 @@ public class MovieService : IMovieService
 
     public async Task<MoviesResponse> GetMovie(Guid id)
     {
-        var movie = await _movieRepository.GetAsync(m => m.Id == id);
+        var movie = await _movieRepository.GetAsync(m => m.Id == id, noTracking: true);
+
         if (movie is null)
             throw new NotFoundException("Movie", id);
 
