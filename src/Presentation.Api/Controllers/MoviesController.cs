@@ -20,19 +20,19 @@ public class MoviesController : ApiControllerBase
     }
 
     [HttpPost]
-    [ProducesResponseType(typeof(MoviesResponse), StatusCodes.Status202Accepted)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<ActionResult<MoviesResponse>> CreateMovie(MoviesRequest moviesRequest)
     {
         var command = _mapper.Map<CreateMovieCommand>(moviesRequest);
         var movie = await _mediator.Send(command);
-        return Accepted(movie);
+        return Ok(movie);
     }
 
     [HttpGet("{id:guid}")]
-    [ProducesResponseType(typeof(MoviesResponse), StatusCodes.Status202Accepted)]
+    [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<ActionResult<MoviesResponse>> GetMovies(Guid id)
     {
         var movie = await _mediator.Send(new GetMoviesQuery(id));
-        return Accepted(movie);
+        return Ok(movie);
     }
 }

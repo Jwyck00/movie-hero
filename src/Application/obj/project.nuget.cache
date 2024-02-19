@@ -1,9 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "I8avRUlGiAdQn3AMxpm5T2+tY9n9oajpRLb7zpbZ8/UKC6srS4mhvDu8lIKpNK7lTUDA1DolLeWWjRDCpN3hAA==",
+  "dgSpecHash": "nAu7kaCX4FZw3nyY6b7abL/tz6gKbQ8GIJAXAhr1vc4Wk2gbDdbZZmT+0CLeNuo8Rr8CqBR7YYLUBVcPh1ejoQ==",
   "success": true,
   "projectFilePath": "/Users/vanenshi/Work/James/MovieHero/src/Application/Application.csproj",
   "expectedPackageFiles": [
+    "/Users/vanenshi/.nuget/packages/fluentvalidation/11.9.0/fluentvalidation.11.9.0.nupkg.sha512",
+    "/Users/vanenshi/.nuget/packages/fluentvalidation.aspnetcore/11.3.0/fluentvalidation.aspnetcore.11.3.0.nupkg.sha512",
+    "/Users/vanenshi/.nuget/packages/fluentvalidation.dependencyinjectionextensions/11.5.1/fluentvalidation.dependencyinjectionextensions.11.5.1.nupkg.sha512",
     "/Users/vanenshi/.nuget/packages/mapster/7.4.0/mapster.7.4.0.nupkg.sha512",
     "/Users/vanenshi/.nuget/packages/mapster.core/1.2.1/mapster.core.1.2.1.nupkg.sha512",
     "/Users/vanenshi/.nuget/packages/mapster.dependencyinjection/1.0.1/mapster.dependencyinjection.1.0.1.nupkg.sha512",

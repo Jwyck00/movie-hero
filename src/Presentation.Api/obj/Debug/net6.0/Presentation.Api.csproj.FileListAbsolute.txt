@@ -76,3 +76,6 @@
 /Users/vanenshi/Work/James/MovieHero/src/Presentation.Api/bin/Debug/net6.0/Mapster.dll
 /Users/vanenshi/Work/James/MovieHero/src/Presentation.Api/bin/Debug/net6.0/Mapster.Core.dll
 /Users/vanenshi/Work/James/MovieHero/src/Presentation.Api/bin/Debug/net6.0/Mapster.DependencyInjection.dll
+/Users/vanenshi/Work/James/MovieHero/src/Presentation.Api/bin/Debug/net6.0/FluentValidation.dll
+/Users/vanenshi/Work/James/MovieHero/src/Presentation.Api/bin/Debug/net6.0/FluentValidation.AspNetCore.dll
+/Users/vanenshi/Work/James/MovieHero/src/Presentation.Api/bin/Debug/net6.0/FluentValidation.DependencyInjectionExtensions.dll
