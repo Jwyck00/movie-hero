@@ -1,8 +1,11 @@
 using Application.Movies.Commands;
+using Application.Movies.Commands.CreateMovie;
 using Application.Movies.Common;
 using Application.Movies.Queries;
+using Application.Movies.Queries.GetMovies;
 using MapsterMapper;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Presentation.Api.Controllers;
@@ -19,6 +22,7 @@ public class MoviesController : ApiControllerBase
         _mapper = mapper;
     }
 
+    [Authorize]
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<ActionResult<MoviesResponse>> CreateMovie(MoviesRequest moviesRequest)
@@ -28,6 +32,7 @@ public class MoviesController : ApiControllerBase
         return Ok(movie);
     }
 
+    [AllowAnonymous]
     [HttpGet("{id:guid}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<ActionResult<MoviesResponse>> GetMovies(Guid id)

@@ -4,7 +4,7 @@ using Application.Movies.Common;
 using MapsterMapper;
 using MediatR;
 
-namespace Application.Movies.Queries;
+namespace Application.Movies.Queries.GetMovies;
 
 public class GetMoviesQueryHandler : IRequestHandler<GetMoviesQuery, MoviesResponse>
 {

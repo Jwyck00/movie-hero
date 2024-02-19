@@ -1,4 +1,5 @@
 using Application.Movies.Commands;
+using Application.Movies.Commands.CreateMovie;
 using Application.Movies.Common;
 using Domain.Entities;
 using Mapster;

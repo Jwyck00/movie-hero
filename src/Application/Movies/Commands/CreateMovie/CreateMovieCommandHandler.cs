@@ -1,10 +1,9 @@
 using Application.Common.Interfaces.Persistence;
 using Application.Movies.Common;
-using Application.Movies.Queries;
 using Domain.Entities;
 using MediatR;
 
-namespace Application.Movies.Commands;
+namespace Application.Movies.Commands.CreateMovie;
 
 public class CreateMovieCommandHandler : IRequestHandler<CreateMovieCommand, MoviesResponse>
 {
@@ -21,7 +20,7 @@ public class CreateMovieCommandHandler : IRequestHandler<CreateMovieCommand, Mov
     )
     {
         var movieEntity = new Movie { Id = Guid.NewGuid(), Name = command.Name };
-        
+
         await _movieRepository.AddAsync(entity: movieEntity, cancellationToken: cancellationToken);
         return new MoviesResponse(Id: movieEntity.Id, Name: movieEntity.Name);
     }
