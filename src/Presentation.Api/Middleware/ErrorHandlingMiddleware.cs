@@ -2,6 +2,7 @@ using System.Net;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Application.Common;
+using Application.Error.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Presentation.Api.Middleware;

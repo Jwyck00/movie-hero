@@ -1,3 +1,3 @@
-namespace Application.Dto.Movies;
+namespace Application.Movies.Common;
 
 public record MoviesRequest(string Name);

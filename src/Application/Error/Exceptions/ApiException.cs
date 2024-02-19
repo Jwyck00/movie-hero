@@ -1,6 +1,6 @@
 using System.Net;
 
-namespace Application.Common;
+namespace Application.Error.Exceptions;
 
 public abstract class ApiException : Exception
 {

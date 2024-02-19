@@ -1,7 +1,6 @@
 using System.Net;
-using Application.Common;
 
-namespace Application.Exceptions;
+namespace Application.Error.Exceptions;
 
 public class NotFoundException : ApiException
 {

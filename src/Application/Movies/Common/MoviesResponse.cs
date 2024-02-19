@@ -1,4 +1,4 @@
-namespace Application.Dto.Movies;
+namespace Application.Movies.Common;
 
 public record MoviesResponse(
     Guid Id,
