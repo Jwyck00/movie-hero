@@ -1,37 +1,35 @@
 using Application.Common.Interfaces.Persistence;
-using Application.Error.Exceptions;
+using Application.Mapping;
+using Application.Models;
 using Application.Movies.Common;
+using Mapster;
 using MapsterMapper;
 using MediatR;
 
 namespace Application.Movies.Queries.GetMovies;
 
-public class GetMoviesQueryHandler : IRequestHandler<GetMoviesQuery, MoviesResponse>
+public class GetMoviesQueryHandler : IRequestHandler<GetMoviesQuery, IPaginatedList<MovieResponse>>
 {
     private readonly IMovieRepository _movieRepository;
-    private readonly IMapper _mapper;
 
     public GetMoviesQueryHandler(IMovieRepository movieRepository, IMapper mapper)
     {
         _movieRepository = movieRepository;
-        _mapper = mapper;
     }
 
-    public async Task<MoviesResponse> Handle(
-        GetMoviesQuery query,
+    public async Task<IPaginatedList<MovieResponse>> Handle(
+        GetMoviesQuery request,
         CancellationToken cancellationToken
     )
     {
-        var movie = await _movieRepository.GetAsync(
-            predicate: m => m.Id == query.Id,
-            noTracking: true,
-            cancellationToken: cancellationToken
-        );
+        var moviesQuery = _movieRepository.GetQuery();
 
-        if (movie is null)
-            throw new NotFoundException("Movie", query.Id);
+        if (request.Q != null)
+        {
+            moviesQuery = moviesQuery.Where(x => x.Name.Contains(request.Q));
+        }
 
-        var resp = _mapper.Map<MoviesResponse>(movie);
-        return resp;
+        var movies = await moviesQuery.ProjectToType<MovieResponse>().PaginatedListAsync(request);
+        return movies;
     }
 }

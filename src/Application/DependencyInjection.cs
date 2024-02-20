@@ -1,3 +1,4 @@
+using System.Reflection;
 using Application.Behaviors;
 using Application.Mapping;
 using FluentValidation;
@@ -12,14 +13,13 @@ public static class DependencyInjection
         services.AddMediatR(
             configuration =>
             {
-                configuration.RegisterServicesFromAssemblyContaining(typeof(DependencyInjection));
-
+                configuration.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
                 configuration.AddOpenBehavior(typeof(ValidationBehavior<,>));
             }
         );
 
-        services.AddMapping();
-        services.AddValidatorsFromAssemblyContaining(typeof(DependencyInjection));
+        services.AddMapping(Assembly.GetExecutingAssembly());
+        services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
         return services;
     }
 }

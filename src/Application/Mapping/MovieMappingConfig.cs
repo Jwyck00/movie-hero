@@ -10,7 +10,7 @@ public class MovieMappingConfig : IRegister
 {
     public void Register(TypeAdapterConfig config)
     {
-        config.NewConfig<MoviesRequest, CreateMovieCommand>();
-        config.NewConfig<Movie, MoviesResponse>();
+        config.NewConfig<CreateMoviesRequest, CreateMovieCommand>();
+        config.NewConfig<Movie, MovieResponse>();
     }
 }

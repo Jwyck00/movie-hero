@@ -1,4 +1,3 @@
-using Application.Error.Exceptions;
 using FluentValidation;
 using MediatR;
 
@@ -7,11 +6,11 @@ namespace Application.Behaviors;
 public class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     where TRequest : IRequest<TResponse>
 {
-    private readonly IValidator<TRequest>? _validator;
+    private readonly IEnumerable<IValidator<TRequest>> _validators;
 
-    public ValidationBehavior(IValidator<TRequest>? validator = null)
+    public ValidationBehavior(IEnumerable<IValidator<TRequest>> validators)
     {
-        _validator = validator;
+        _validators = validators;
     }
 
     public async Task<TResponse> Handle(
@@ -20,18 +19,23 @@ public class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TReques
         CancellationToken cancellationToken
     )
     {
-        if (_validator is null)
-        {
+        if (!_validators.Any())
             return await next();
-        }
 
-        var validationResult = await _validator.ValidateAsync(request, cancellationToken);
+        var context = new ValidationContext<TRequest>(request);
 
-        if (validationResult.IsValid)
-        {
-            return await next();
-        }
+        var validationResults = await Task.WhenAll(
+            _validators.Select(v => v.ValidateAsync(context, cancellationToken))
+        );
 
-        throw new ArgValidationException(validationResult.Errors);
+        var failures = validationResults
+            .Where(r => r.Errors.Any())
+            .SelectMany(r => r.Errors)
+            .ToList();
+
+        if (failures.Any())
+            throw new ValidationException(failures);
+
+        return await next();
     }
 }

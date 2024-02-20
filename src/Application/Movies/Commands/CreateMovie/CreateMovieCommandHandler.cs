@@ -5,7 +5,7 @@ using MediatR;
 
 namespace Application.Movies.Commands.CreateMovie;
 
-public class CreateMovieCommandHandler : IRequestHandler<CreateMovieCommand, MoviesResponse>
+public class CreateMovieCommandHandler : IRequestHandler<CreateMovieCommand, MovieResponse>
 {
     private readonly IMovieRepository _movieRepository;
 
@@ -14,7 +14,7 @@ public class CreateMovieCommandHandler : IRequestHandler<CreateMovieCommand, Mov
         _movieRepository = movieRepository;
     }
 
-    public async Task<MoviesResponse> Handle(
+    public async Task<MovieResponse> Handle(
         CreateMovieCommand command,
         CancellationToken cancellationToken
     )
@@ -22,6 +22,6 @@ public class CreateMovieCommandHandler : IRequestHandler<CreateMovieCommand, Mov
         var movieEntity = new Movie { Id = Guid.NewGuid(), Name = command.Name };
 
         await _movieRepository.AddAsync(entity: movieEntity, cancellationToken: cancellationToken);
-        return new MoviesResponse(Id: movieEntity.Id, Name: movieEntity.Name);
+        return new MovieResponse(Id: movieEntity.Id, Name: movieEntity.Name);
     }
 }
