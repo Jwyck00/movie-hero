@@ -1,6 +1,6 @@
-using Application.Models;
+using Application.Common.Models;
 
-namespace Application.Mapping;
+namespace Application.Common.Mapping;
 
 public static class MappingExtensions
 {

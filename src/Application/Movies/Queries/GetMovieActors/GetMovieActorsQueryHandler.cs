@@ -1,7 +1,7 @@
 using Application.Actors.Common;
 using Application.Common;
+using Application.Common.Error.Exceptions;
 using Application.Common.Interfaces.Persistence;
-using Application.Error.Exceptions;
 using Domain.Entities;
 using Mapster;
 using MapsterMapper;

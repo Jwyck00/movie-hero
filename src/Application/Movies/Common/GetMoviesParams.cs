@@ -1,7 +1,7 @@
-using Application.Contracts.Common;
+using Application.Common.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Application.Contracts.Movies;
+namespace Application.Movies.Common;
 
 public class GetMoviesParams : PaginationParams
 {

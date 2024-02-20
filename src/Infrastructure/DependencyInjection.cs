@@ -18,6 +18,7 @@ public static class DependencyInjection
     )
     {
         services.AddScoped<IMoviesRepository, MoviesRepository>();
+        services.AddScoped<IMovieStartRatingsRepository, MovieStartRatingsRepository>();
         services.AddScoped<IActorsRepository, ActorsRepository>();
 
         services.AddScoped<IDateTimeProvider, DateTimeProvider>();

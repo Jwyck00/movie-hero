@@ -1,6 +1,6 @@
 using Application.Common.Interfaces.Persistence;
-using Application.Mapping;
-using Application.Models;
+using Application.Common.Mapping;
+using Application.Common.Models;
 using Application.Movies.Common;
 using Mapster;
 using MapsterMapper;

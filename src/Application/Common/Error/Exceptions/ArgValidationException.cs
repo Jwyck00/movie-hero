@@ -1,12 +1,12 @@
 using System.Net;
 using FluentValidation.Results;
 
-namespace Application.Error.Exceptions;
+namespace Application.Common.Error.Exceptions;
 
 public class ArgValidationException : ApiException
 {
     public ArgValidationException(IEnumerable<ValidationFailure> errors)
-        : base(statusCode: HttpStatusCode.NotFound, message: BuildErrorMessage(errors)) { }
+        : base(statusCode: HttpStatusCode.BadRequest, message: BuildErrorMessage(errors)) { }
 
     private static string BuildErrorMessage(IEnumerable<ValidationFailure> errors)
     {

@@ -1,6 +1,6 @@
 using Application.Common;
+using Application.Common.Error.Exceptions;
 using Application.Common.Interfaces.Persistence;
-using Application.Error.Exceptions;
 using Application.Movies.Common;
 using Domain.Entities;
 using Mapster;
@@ -27,17 +27,14 @@ public class GetMovieQueryHandler : IRequestHandler<GetMovieQuery, MovieResponse
         CancellationToken cancellationToken
     )
     {
-        var movieActor = await _moviesRepository
+        var movie = await _moviesRepository
             .GetQuery(noTracking: true)
             .Where(m => m.Id == query.Id)
-            .Select(movie => new { Movie = movie, ActorsCount = movie.Actors.Count })
+            .ProjectToType<MovieResponse>()
             .FirstOrDefaultAsync(cancellationToken: cancellationToken);
 
-        if (movieActor is null)
+        if (movie is null)
             throw new NotFoundException("Movie", query.Id);
-
-        var movie = _mapper.Map<MovieResponse>(movieActor.Movie);
-        movie.ActorsCount = movieActor.ActorsCount;
 
         return movie;
     }

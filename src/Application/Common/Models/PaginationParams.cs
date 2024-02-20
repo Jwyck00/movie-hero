@@ -1,7 +1,7 @@
 using System.ComponentModel;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Application.Contracts.Common;
+namespace Application.Common.Models;
 
 public class PaginationParams : IPaginationParams
 {

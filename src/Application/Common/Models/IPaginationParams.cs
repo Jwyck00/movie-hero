@@ -1,4 +1,4 @@
-namespace Application.Contracts.Common;
+namespace Application.Common.Models;
 
 public interface IPaginationParams
 {

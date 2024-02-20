@@ -1,3 +1,4 @@
+using System.Reflection;
 using Microsoft.OpenApi.Models;
 
 namespace Presentation.Api;
@@ -12,6 +13,13 @@ public static class DependencyInjection
         services.AddSwaggerGen(
             options =>
             {
+                var assemblyName = Assembly.GetExecutingAssembly().GetName().Name;
+                var filePath = Path.Combine(
+                    path1: AppContext.BaseDirectory,
+                    path2: assemblyName + ".xml"
+                );
+                options.IncludeXmlComments(filePath);
+
                 options.AddSecurityDefinition(
                     name: "Bearer",
                     securityScheme: new OpenApiSecurityScheme

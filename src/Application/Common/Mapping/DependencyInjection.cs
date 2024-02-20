@@ -4,7 +4,7 @@ using Mapster.Utils;
 using MapsterMapper;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Application.Mapping;
+namespace Application.Common.Mapping;
 
 public static class DependencyInjection
 {

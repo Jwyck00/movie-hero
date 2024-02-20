@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace Application.Models;
+namespace Application.Common.Models;
 
 public interface IPaginatedList<TItems>
 {

@@ -1,6 +1,6 @@
 using System.Reflection;
-using Application.Behaviors;
-using Application.Mapping;
+using Application.Common.Behaviors;
+using Application.Common.Mapping;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 

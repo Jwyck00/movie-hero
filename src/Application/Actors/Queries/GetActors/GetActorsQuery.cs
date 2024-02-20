@@ -1,18 +1,19 @@
+using Application.Actors.Common;
 using Application.Common.Models;
-using Application.Movies.Common;
 using FluentValidation;
 using MediatR;
 
-namespace Application.Movies.Queries.GetMovies;
+namespace Application.Actors.Queries.GetActors;
 
-public class GetMoviesQuery : PaginatedRequest, IRequest<IPaginatedList<MovieResponse>>
+public class GetActorsQuery : PaginatedRequest, IRequest<IPaginatedList<ActorResponse>>
 {
     public string? SearchQuery { get; set; }
+    public IList<Guid>? MovieIds { get; set; }
 }
 
-public class GetMoviesQueryValidator : AbstractValidator<GetMoviesQuery>
+public class GetActorsQueryValidator : AbstractValidator<GetActorsQuery>
 {
-    public GetMoviesQueryValidator()
+    public GetActorsQueryValidator()
     {
         // TODO find a way to automate this
         Include(new PaginatedRequestValidator());

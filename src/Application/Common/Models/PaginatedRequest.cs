@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace Application.Models;
+namespace Application.Common.Models;
 
 public class PaginatedRequest
 {

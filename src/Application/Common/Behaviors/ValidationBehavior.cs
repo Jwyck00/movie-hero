@@ -1,10 +1,11 @@
+using Application.Common.Error.Exceptions;
 using FluentValidation;
 using MediatR;
 
-namespace Application.Behaviors;
+namespace Application.Common.Behaviors;
 
 public class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
-    where TRequest : IRequest<TResponse>
+    where TRequest : notnull
 {
     private readonly IEnumerable<IValidator<TRequest>> _validators;
 
@@ -34,7 +35,7 @@ public class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TReques
             .ToList();
 
         if (failures.Any())
-            throw new ValidationException(failures);
+            throw new ArgValidationException(failures);
 
         return await next();
     }
