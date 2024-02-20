@@ -2,7 +2,11 @@ using FluentValidation;
 
 namespace Application.Models;
 
-public record PaginatedRequest(int PageNumber = 1, int PageSize = 10);
+public class PaginatedRequest
+{
+    public int PageNumber { get; init; }
+    public int PageSize { get; init; }
+}
 
 public class PaginatedRequestValidator : AbstractValidator<PaginatedRequest>
 {

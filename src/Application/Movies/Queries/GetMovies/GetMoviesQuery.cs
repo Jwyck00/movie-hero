@@ -1,12 +1,14 @@
 using Application.Models;
 using Application.Movies.Common;
 using FluentValidation;
-using Mapster;
 using MediatR;
 
 namespace Application.Movies.Queries.GetMovies;
 
-public record GetMoviesQuery(string? Q) : PaginatedRequest, IRequest<IPaginatedList<MovieResponse>>;
+public class GetMoviesQuery : PaginatedRequest, IRequest<IPaginatedList<MovieResponse>>
+{
+    public string? SearchQuery { get; set; }
+}
 
 public class GetMoviesQueryValidator : AbstractValidator<GetMoviesQuery>
 {
@@ -14,6 +16,6 @@ public class GetMoviesQueryValidator : AbstractValidator<GetMoviesQuery>
     {
         // TODO find a way to automate this
         Include(new PaginatedRequestValidator());
-        RuleFor(query => query.Q).MinimumLength(3).When(x => x.Q != null);
+        RuleFor(query => query.SearchQuery).MinimumLength(3).When(x => x.SearchQuery != null);
     }
 }

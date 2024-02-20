@@ -10,11 +10,11 @@ namespace Application.Movies.Queries.GetMovies;
 
 public class GetMoviesQueryHandler : IRequestHandler<GetMoviesQuery, IPaginatedList<MovieResponse>>
 {
-    private readonly IMovieRepository _movieRepository;
+    private readonly IMoviesRepository _moviesRepository;
 
-    public GetMoviesQueryHandler(IMovieRepository movieRepository, IMapper mapper)
+    public GetMoviesQueryHandler(IMoviesRepository moviesRepository, IMapper mapper)
     {
-        _movieRepository = movieRepository;
+        _moviesRepository = moviesRepository;
     }
 
     public async Task<IPaginatedList<MovieResponse>> Handle(
@@ -22,14 +22,15 @@ public class GetMoviesQueryHandler : IRequestHandler<GetMoviesQuery, IPaginatedL
         CancellationToken cancellationToken
     )
     {
-        var moviesQuery = _movieRepository.GetQuery();
+        var moviesQuery = _moviesRepository.GetQuery();
 
-        if (request.Q != null)
+        if (request.SearchQuery != null)
         {
-            moviesQuery = moviesQuery.Where(x => x.Name.Contains(request.Q));
+            moviesQuery = moviesQuery.Where(x => x.Name.Contains(request.SearchQuery));
         }
 
         var movies = await moviesQuery.ProjectToType<MovieResponse>().PaginatedListAsync(request);
+
         return movies;
     }
 }

@@ -1,19 +1,24 @@
+using Application.Common;
 using Application.Common.Interfaces.Persistence;
 using Application.Error.Exceptions;
 using Application.Movies.Common;
+using Domain.Entities;
+using Mapster;
 using MapsterMapper;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace Application.Movies.Queries.GetMovie;
 
 public class GetMovieQueryHandler : IRequestHandler<GetMovieQuery, MovieResponse>
 {
-    private readonly IMovieRepository _movieRepository;
+    private readonly IMoviesRepository _moviesRepository;
+
     private readonly IMapper _mapper;
 
-    public GetMovieQueryHandler(IMovieRepository movieRepository, IMapper mapper)
+    public GetMovieQueryHandler(IMoviesRepository moviesRepository, IMapper mapper)
     {
-        _movieRepository = movieRepository;
+        _moviesRepository = moviesRepository;
         _mapper = mapper;
     }
 
@@ -22,16 +27,18 @@ public class GetMovieQueryHandler : IRequestHandler<GetMovieQuery, MovieResponse
         CancellationToken cancellationToken
     )
     {
-        var movie = await _movieRepository.GetAsync(
-            predicate: m => m.Id == query.Id,
-            noTracking: true,
-            cancellationToken: cancellationToken
-        );
+        var movieActor = await _moviesRepository
+            .GetQuery(noTracking: true)
+            .Where(m => m.Id == query.Id)
+            .Select(movie => new { Movie = movie, ActorsCount = movie.Actors.Count })
+            .FirstOrDefaultAsync(cancellationToken: cancellationToken);
 
-        if (movie is null)
+        if (movieActor is null)
             throw new NotFoundException("Movie", query.Id);
 
-        var resp = _mapper.Map<MovieResponse>(movie);
-        return resp;
+        var movie = _mapper.Map<MovieResponse>(movieActor.Movie);
+        movie.ActorsCount = movieActor.ActorsCount;
+
+        return movie;
     }
 }

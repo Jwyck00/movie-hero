@@ -1,15 +1,16 @@
+using Application.Actors.Common;
+using Application.Contracts.Movies;
 using Application.Movies.Commands;
 using Application.Movies.Commands.CreateMovie;
 using Application.Movies.Common;
 using Application.Movies.Queries;
 using Application.Movies.Queries.GetMovie;
+using Application.Movies.Queries.GetMovieActors;
 using Application.Movies.Queries.GetMovies;
 using MapsterMapper;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Presentation.Api.Contracts.Common;
-using Presentation.Api.Contracts.Movies;
 
 namespace Presentation.Api.Controllers;
 
@@ -30,11 +31,13 @@ public class MoviesController : ApiControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<ActionResult<MovieResponse>> GetMovies([FromQuery] GetMoviesParams @params)
     {
-        var command = new GetMoviesQuery(@params.Q)
+        var command = new GetMoviesQuery
         {
+            SearchQuery = @params.SearchQuery,
             PageNumber = @params.PageNumber,
             PageSize = @params.PageSize
         };
+
         var movie = await _mediator.Send(command);
         return Ok(movie);
     }
@@ -45,6 +48,16 @@ public class MoviesController : ApiControllerBase
     public async Task<ActionResult<MovieResponse>> GetMovie(Guid id)
     {
         var command = new GetMovieQuery(id);
+        var movie = await _mediator.Send(command);
+        return Ok(movie);
+    }
+
+    [AllowAnonymous]
+    [HttpGet("{movieId:guid}/actors")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<ActionResult<IList<ActorResponse>>> GetMovieActors(Guid movieId)
+    {
+        var command = new GetMovieActorsQuery { MovieId = movieId };
         var movie = await _mediator.Send(command);
         return Ok(movie);
     }

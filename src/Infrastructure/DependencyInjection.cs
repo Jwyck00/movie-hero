@@ -17,7 +17,9 @@ public static class DependencyInjection
         IConfiguration configuration
     )
     {
-        services.AddScoped<IMovieRepository, MovieRepository>();
+        services.AddScoped<IMoviesRepository, MoviesRepository>();
+        services.AddScoped<IActorsRepository, ActorsRepository>();
+
         services.AddScoped<IDateTimeProvider, DateTimeProvider>();
 
         services.AddDbContext<ApplicationDbContext>();
