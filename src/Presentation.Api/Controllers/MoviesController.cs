@@ -4,6 +4,7 @@ using Application.Movies.Commands.CreateMovie;
 using Application.Movies.Commands.DeleteMovie;
 using Application.Movies.Commands.EditMovie;
 using Application.Movies.Commands.RateMovie;
+using Application.Movies.Commands.RemoveActorFromMovie;
 using Application.Movies.Common;
 using Application.Movies.Queries.GetMovie;
 using Application.Movies.Queries.GetMovieActors;
@@ -94,11 +95,20 @@ public class MoviesController : ApiControllerBase
     }
 
     [Authorize]
-    [HttpPost("{id:guid}/add-actor/{actorId:guid}")]
+    [HttpPost("{id:guid}/actor/{actorId:guid}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task AddActorToMovie(Guid id, Guid actorId)
     {
         var command = new AddActorToMovieCommand { MovieId = id, ActorId = actorId };
+        await _mediator.Send(command);
+    }
+
+    [Authorize]
+    [HttpDelete("{id:guid}/actor/{actorId:guid}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task RemoveActorFromMovie(Guid id, Guid actorId)
+    {
+        var command = new RemoveActorFromMovieCommand { MovieId = id, ActorId = actorId };
         await _mediator.Send(command);
     }
 

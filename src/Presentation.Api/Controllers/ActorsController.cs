@@ -43,36 +43,4 @@ public class ActorsController : ApiControllerBase
         var movie = await _mediator.Send(command);
         return Ok(movie);
     }
-
-    [AllowAnonymous]
-    [HttpGet("{id:guid}")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    public async Task<ActionResult<ActorResponse>> GetActor(Guid id)
-    {
-        throw new NotImplementedException();
-    }
-
-    [Authorize]
-    [HttpPost]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    public async Task<ActionResult<ActorResponse>> CreateActor(Guid id)
-    {
-        throw new NotImplementedException();
-    }
-
-    [Authorize]
-    [HttpPut("{id:guid}")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    public async Task<ActionResult<ActorResponse>> EditActor(Guid id)
-    {
-        throw new NotImplementedException();
-    }
-
-    [Authorize]
-    [HttpDelete("{id:guid}")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    public async Task DeleteActor(Guid id)
-    {
-        throw new NotImplementedException();
-    }
 }

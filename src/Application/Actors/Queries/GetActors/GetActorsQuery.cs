@@ -15,7 +15,6 @@ public class GetActorsQueryValidator : AbstractValidator<GetActorsQuery>
 {
     public GetActorsQueryValidator()
     {
-        // TODO find a way to automate this
         Include(new PaginatedRequestValidator());
         RuleFor(query => query.SearchQuery).MinimumLength(3).When(x => x.SearchQuery != null);
     }

@@ -23,7 +23,8 @@ public static class DependencyInjection
 
         services.AddScoped<IDateTimeProvider, DateTimeProvider>();
 
-        services.AddDbContext<ApplicationDbContext>();
+        services.AddDbContext<ApplicationDbContext>(ServiceLifetime.Scoped);
+        services.AddScoped<ApplicationDbContextInitialiser>();
 
         services.Configure<AuthorizationSettings>(
             configuration.GetSection(AuthorizationSettings.Section)
