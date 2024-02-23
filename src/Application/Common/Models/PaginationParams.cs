@@ -6,10 +6,10 @@ namespace Application.Common.Models;
 public class PaginationParams : IPaginationParams
 {
     [DefaultValue(1)]
-    [FromQuery(Name = "page-number")]
+    [FromQuery(Name = "pageNumber")]
     public int PageNumber { get; init; }
 
     [DefaultValue(10)]
-    [FromQuery(Name = "page-size")]
+    [FromQuery(Name = "pageSize")]
     public int PageSize { get; init; }
 }

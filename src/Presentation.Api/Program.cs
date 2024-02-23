@@ -1,14 +1,12 @@
 using Application;
 using Infrastructure;
 using Infrastructure.Persistence;
-using Infrastructure.Security;
-using Microsoft.AspNetCore.Authentication;
 using Presentation.Api;
-using Swashbuckle.AspNetCore.SwaggerUI;
 
 var builder = WebApplication.CreateBuilder(args);
+var configuration = builder.Configuration;
 
-builder.Services.AddPresentation().AddApplication().AddInfrastructure(builder.Configuration);
+builder.Services.AddPresentation(configuration).AddApplication().AddInfrastructure(configuration);
 
 var app = builder.Build();
 
@@ -24,8 +22,7 @@ if (app.Environment.IsDevelopment())
     );
 }
 
-app.UsePresentation();
-app.UseAuthorization();
+app.UsePresentation(configuration);
 app.MapControllers();
 
 app.Run();

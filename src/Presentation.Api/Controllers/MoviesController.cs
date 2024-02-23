@@ -1,4 +1,5 @@
 using Application.Actors.Common;
+using Application.Common.Models;
 using Application.Movies.Commands.AddActorToMovie;
 using Application.Movies.Commands.CreateMovie;
 using Application.Movies.Commands.DeleteMovie;
@@ -31,7 +32,9 @@ public class MoviesController : ApiControllerBase
     [AllowAnonymous]
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public async Task<ActionResult<MovieResponse>> GetMovies([FromQuery] GetMoviesParams @params)
+    public async Task<ActionResult<IPaginatedList<MovieResponse>>> GetMovies(
+        [FromQuery] GetMoviesParams @params
+    )
     {
         var command = new GetMoviesQuery
         {
@@ -71,7 +74,12 @@ public class MoviesController : ApiControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<ActionResult<MovieResponse>> EditMovie(Guid id, EditMoviesRequest request)
     {
-        var command = new EditMovieCommand { MovieId = id, Name = request.Name };
+        var command = new EditMovieCommand
+        {
+            MovieId = id,
+            Name = request.Name,
+            ActorIds = request.ActorIds
+        };
         return await _mediator.Send(command);
     }
 

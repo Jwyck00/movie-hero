@@ -24,7 +24,9 @@ public class GetActorsQueryHandler : IRequestHandler<GetActorsQuery, IPaginatedL
         var actorQuery = _actorsRepository.GetQuery();
 
         if (request.SearchQuery != null)
-            actorQuery = actorQuery.Where(x => x.Name.Contains(request.SearchQuery));
+            actorQuery = actorQuery.Where(
+                x => x.Name.ToLower().StartsWith(request.SearchQuery.ToLower())
+            );
         // Check if this actor plays in one of the movies listed in filters
         if (request.MovieIds != null)
             actorQuery = actorQuery.Where(a => a.Movies.Any(m => request.MovieIds.Contains(m.Id)));

@@ -1,14 +1,19 @@
 using System.Reflection;
 using Microsoft.OpenApi.Models;
+using Presentation.Api.Extensions;
 
 namespace Presentation.Api;
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddPresentation(this IServiceCollection services)
+    public static IServiceCollection AddPresentation(
+        this IServiceCollection services,
+        IConfiguration configuration
+    )
     {
         services.AddControllers();
         services.AddEndpointsApiExplorer();
+        services.AddCors(configuration);
 
         services.AddSwaggerGen(
             options =>

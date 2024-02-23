@@ -37,7 +37,7 @@ public class ActorsController : ApiControllerBase
             SearchQuery = @params.SearchQuery,
             MovieIds = @params.MovieIds,
             PageNumber = @params.PageNumber,
-            PageSize = @params.PageSize
+            PageSize = @params.PageSize,
         };
 
         var movie = await _mediator.Send(command);
